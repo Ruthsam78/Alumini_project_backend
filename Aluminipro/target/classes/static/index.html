@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Mentor - Step 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div class="logo-box">
+            <img src="kitlogo.png" alt="KIT Logo" width="120">
+        </div>
+
+        <div class="college-details">
+            <h4>Industry Engagement & Career Center</h4>
+            <h2>Kalaignarkarunanidhi Institute of Technology</h2>
+            <p>Coimbatore, Tamil Nadu</p>
+        </div>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="title-section">
+
+        <h1>Become a Mentor</h1>
+
+        <p>
+            Share your expertise with students. Fill this form to register as a mentor.
+        </p>
+
+    </div>
+
+    <div class="progress-card">
+
+        <div class="progress-top">
+            <span>REGISTRATION PROGRESS - STEP 1 OF 4</span>
+            <div class="progress-count">1/4 Completed</div>
+        </div>
+
+        <div class="stepper">
+
+            <div class="step active">
+                <div class="circle active-circle">1</div>
+                <h4>Company</h4>
+                <p>Work Details</p>
+                <span class="active-badge">ACTIVE</span>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <div class="circle">2</div>
+                <h4>Personal</h4>
+                <p>Your Info</p>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <div class="circle">3</div>
+                <h4>Alumni</h4>
+                <p>KIT Alumni</p>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <div class="circle">4</div>
+                <h4>Mentorship</h4>
+                <p>Skills & Preferences</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <h3>COMPANY & PROFESSIONAL DETAILS</h3>
+
+        <form id="step1Form">
+
+            <div class="grid">
+
+                <div class="input-box">
+                    <label>Company Name *</label>
+                    <input
+                        type="text"
+                        id="companyName"
+                        placeholder="e.g. Infosys Limited"
+                        required>
+                </div>
+
+                <div class="input-box">
+                    <label>Company Website</label>
+                    <input
+                        type="url"
+                        id="companyWebsite"
+                        placeholder="https://company.com">
+                </div>
+
+                <div class="input-box">
+                    <label>Company Size</label>
+
+                    <select id="companySize">
+                        <option value="">Select Size</option>
+                        <option>1 - 10 Employees</option>
+                        <option>11 - 50 Employees</option>
+                        <option>51 - 200 Employees</option>
+                        <option>201 - 1000 Employees</option>
+                        <option>1000+ Employees</option>
+                    </select>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Industry Domain</label>
+
+                    <input
+                        type="text"
+                        id="industryDomain"
+                        placeholder="e.g. IT, Finance">
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Designation *</label>
+
+                    <input
+                        type="text"
+                        id="designation"
+                        placeholder="e.g. Senior Software Engineer"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Years Of Experience *</label>
+
+                    <input
+                        type="number"
+                        id="experience"
+                        min="0"
+                        placeholder="e.g. 8"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="input-box full-width">
+
+                <label>Current Location</label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="e.g. Chennai, Tamil Nadu">
+
+            </div>
+
+            <div class="button-container">
+
+                <button
+                    type="button"
+                    class="next-btn"
+                    onclick="saveStep1()">
+
+                    Next →
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+window.onload = function(){
+
+    let saved = JSON.parse(localStorage.getItem("step1"));
+
+    if(saved){
+
+        document.getElementById("companyName").value =
+        saved.companyName || "";
+
+        document.getElementById("companyWebsite").value =
+        saved.companyWebsite || "";
+
+        document.getElementById("companySize").value =
+        saved.companySize || "";
+
+        document.getElementById("industryDomain").value =
+        saved.industryDomain || "";
+
+        document.getElementById("designation").value =
+        saved.designation || "";
+
+        document.getElementById("experience").value =
+        saved.experience || "";
+
+        document.getElementById("location").value =
+        saved.location || "";
+    }
+
+}
+
+function saveStep1(){
+
+    let companyName =
+    document.getElementById("companyName").value.trim();
+
+    let designation =
+    document.getElementById("designation").value.trim();
+
+    let experience =
+    document.getElementById("experience").value.trim();
+
+    if(companyName === ""){
+
+        alert("Please Enter Company Name");
+        return;
+    }
+
+    if(designation === ""){
+
+        alert("Please Enter Designation");
+        return;
+    }
+
+    if(experience === ""){
+
+        alert("Please Enter Years Of Experience");
+        return;
+    }
+
+    const step1 = {
+
+        companyName:
+        document.getElementById("companyName").value,
+
+        companyWebsite:
+        document.getElementById("companyWebsite").value,
+
+        companySize:
+        document.getElementById("companySize").value,
+
+        industryDomain:
+        document.getElementById("industryDomain").value,
+
+        designation:
+        document.getElementById("designation").value,
+
+        experience:
+        document.getElementById("experience").value,
+
+        location:
+        document.getElementById("location").value
+    };
+
+    localStorage.setItem(
+        "step1",
+        JSON.stringify(step1)
+    );
+
+    window.location.href =
+    "personal.html";
+}
+
+</script>
+
+</body>
+</html>

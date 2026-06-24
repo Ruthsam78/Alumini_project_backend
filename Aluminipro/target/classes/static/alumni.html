@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Mentor - Step 3</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div class="logo-box">
+            <img src="kitlogo.png" alt="KIT Logo">
+        </div>
+
+        <div class="college-details">
+            <h4>Industry Engagement & Career Center</h4>
+            <h2>Kalaignarkarunanidhi Institute of Technology</h2>
+            <p>Coimbatore, Tamil Nadu</p>
+        </div>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="title-section">
+
+        <h1>Become a Mentor</h1>
+
+        <p>
+            Share your expertise with students. Fill this form to register as a mentor.
+        </p>
+
+    </div>
+
+    <div class="progress-card">
+
+        <div class="progress-top">
+
+            <span>REGISTRATION PROGRESS - STEP 3 OF 4</span>
+
+            <div class="progress-count">
+                3/4 Completed
+            </div>
+
+        </div>
+
+        <div class="stepper">
+
+            <div class="step">
+                <div class="circle completed-circle">✓</div>
+                <h4>Company</h4>
+                <p>Work Details</p>
+            </div>
+
+            <div class="step-line active-line"></div>
+
+            <div class="step">
+                <div class="circle completed-circle">✓</div>
+                <h4>Personal</h4>
+                <p>Your Info</p>
+            </div>
+
+            <div class="step-line active-line"></div>
+
+            <div class="step active">
+                <div class="circle active-circle">3</div>
+                <h4>Alumni</h4>
+                <p>KIT Alumni</p>
+                <span class="active-badge">ACTIVE</span>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <div class="circle">4</div>
+                <h4>Mentorship</h4>
+                <p>Skills & Preferences</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <h3>ALUMNI INFORMATION</h3>
+
+        <form id="step3Form">
+
+            <div class="input-box full-width">
+
+                <label>
+                    Are you an alumnus of KIT? *
+                </label>
+
+                <select id="alumniStatus" required>
+
+                    <option value="">
+                        Select Option
+                    </option>
+
+                    <option value="Yes">
+                        Yes
+                    </option>
+
+                    <option value="No">
+                        No
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="input-box">
+
+                    <label>
+                        Register Number
+                    </label>
+
+                    <input
+                    type="text"
+                    id="registerNumber"
+                    placeholder="Enter Register Number">
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <input
+                    type="text"
+                    id="department"
+                    placeholder="e.g. CSE">
+
+                </div>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="input-box">
+
+                    <label>
+                        Passed Out Year
+                    </label>
+
+                    <input
+                    type="number"
+                    id="passoutYear"
+                    placeholder="e.g. 2023">
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>
+                        Degree
+                    </label>
+
+                    <select id="degree">
+
+                        <option value="">
+                            Select Degree
+                        </option>
+
+                        <option>B.E</option>
+                        <option>B.Tech</option>
+                        <option>M.E</option>
+                        <option>M.Tech</option>
+                        <option>MBA</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                Alumni information helps us connect current students
+                with mentors from similar academic backgrounds.
+
+            </div>
+
+            <div class="button-container between">
+
+                <button
+                type="button"
+                class="prev-btn"
+                onclick="window.location.href='personal.html'">
+
+                    ← Previous
+
+                </button>
+
+                <button
+                type="button"
+                class="next-btn"
+                onclick="saveStep3()">
+
+                    Next →
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+window.onload = function(){
+
+    let saved = JSON.parse(
+        localStorage.getItem("step3")
+    );
+
+    if(saved){
+
+        document.getElementById("alumniStatus").value =
+        saved.alumniStatus || "";
+
+        document.getElementById("registerNumber").value =
+        saved.registerNumber || "";
+
+        document.getElementById("department").value =
+        saved.department || "";
+
+        document.getElementById("passoutYear").value =
+        saved.passoutYear || "";
+
+        document.getElementById("degree").value =
+        saved.degree || "";
+    }
+}
+
+function saveStep3(){
+
+    let alumniStatus =
+    document.getElementById("alumniStatus").value;
+
+    if(alumniStatus === ""){
+
+        alert("Please Select Alumni Status");
+
+        return;
+    }
+
+    const step3 = {
+
+        alumniStatus:
+        document.getElementById("alumniStatus").value,
+
+        registerNumber:
+        document.getElementById("registerNumber").value,
+
+        department:
+        document.getElementById("department").value,
+
+        passoutYear:
+        document.getElementById("passoutYear").value,
+
+        degree:
+        document.getElementById("degree").value
+    };
+
+    localStorage.setItem(
+        "step3",
+        JSON.stringify(step3)
+    );
+
+    window.location.href =
+    "mentor.html";
+}
+
+</script>
+
+</body>
+</html>

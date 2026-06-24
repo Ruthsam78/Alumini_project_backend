@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Mentor - Step 4</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div class="logo-box">
+            <img src="kitlogo.png" alt="KIT Logo" width="120">
+        </div>
+
+        <div class="college-details">
+            <h4>Industry Engagement & Career Center</h4>
+            <h2>Kalaignarkarunanidhi Institute of Technology</h2>
+            <p>Coimbatore, Tamil Nadu</p>
+        </div>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="title-section">
+
+        <h1>Become a Mentor</h1>
+
+        <p>
+            Share your expertise with students and help shape future careers.
+        </p>
+
+    </div>
+
+    <div class="progress-card">
+
+        <div class="progress-top">
+
+            <span>REGISTRATION PROGRESS - STEP 4 OF 4</span>
+
+            <div class="progress-count">
+                4/4 Completed
+            </div>
+
+        </div>
+
+        <div class="stepper">
+
+            <div class="step">
+                <div class="circle completed-circle">✓</div>
+                <h4>Company</h4>
+                <p>Work Details</p>
+            </div>
+
+            <div class="step-line active-line"></div>
+
+            <div class="step">
+                <div class="circle completed-circle">✓</div>
+                <h4>Personal</h4>
+                <p>Your Info</p>
+            </div>
+
+            <div class="step-line active-line"></div>
+
+            <div class="step">
+                <div class="circle completed-circle">✓</div>
+                <h4>Alumni</h4>
+                <p>KIT Alumni</p>
+            </div>
+
+            <div class="step-line active-line"></div>
+
+            <div class="step active">
+                <div class="circle active-circle">4</div>
+                <h4>Mentorship</h4>
+                <p>Skills & Preferences</p>
+                <span class="active-badge">ACTIVE</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <h3>MENTORSHIP DETAILS</h3>
+
+        <form id="step4Form">
+
+            <div class="grid">
+
+                <div class="input-box">
+
+                    <label>Mentorship Mode *</label>
+
+                    <select id="mentorshipMode">
+
+                        <option value="">
+                            Select Mode
+                        </option>
+
+                        <option>
+                            Online
+                        </option>
+
+                        <option>
+                            Offline
+                        </option>
+
+                        <option>
+                            Hybrid
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Sessions Per Month</label>
+
+                    <select id="sessionsPerMonth">
+
+                        <option value="">
+                            Select Frequency
+                        </option>
+
+                        <option>1 Session</option>
+                        <option>2 Sessions</option>
+                        <option>4 Sessions</option>
+                        <option>8 Sessions</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="input-box full-width">
+
+                <label>Skills / Domains</label>
+
+                <input
+                type="text"
+                id="skills"
+                placeholder="Java, Python, AI, Cloud Computing">
+
+            </div>
+
+            <div class="input-box full-width">
+
+                <label>Short Bio *</label>
+
+                <textarea
+                id="bio"
+                rows="6"
+                placeholder="Tell students about yourself..."
+                ></textarea>
+
+            </div>
+
+            <div class="info-box">
+
+                After submission your profile will be reviewed and
+                students can connect with you for mentorship.
+
+            </div>
+
+            <div class="button-container between">
+
+                <button
+                type="button"
+                class="prev-btn"
+                onclick="window.location.href='alumni.html'">
+
+                    ← Previous
+
+                </button>
+
+                <button
+                type="button"
+                class="submit-btn"
+                onclick="submitRegistration()">
+
+                    Submit Registration ✓
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+window.onload = function(){
+
+    let saved =
+    JSON.parse(localStorage.getItem("step4"));
+
+    if(saved){
+
+        document.getElementById("mentorshipMode").value =
+        saved.mentorshipMode || "";
+
+        document.getElementById("sessionsPerMonth").value =
+        saved.sessionsPerMonth || "";
+
+        document.getElementById("skills").value =
+        saved.skills || "";
+
+        document.getElementById("bio").value =
+        saved.bio || "";
+    }
+}
+
+async function submitRegistration(){
+
+    let mentorshipMode =
+    document.getElementById("mentorshipMode").value;
+
+    let bio =
+    document.getElementById("bio").value.trim();
+
+    if(mentorshipMode === ""){
+
+        alert("Please Select Mentorship Mode");
+        return;
+    }
+
+    if(bio === ""){
+
+        alert("Please Enter Bio");
+        return;
+    }
+
+    const step4 = {
+
+        mentorshipMode:
+        document.getElementById("mentorshipMode").value,
+
+        sessionsPerMonth:
+        document.getElementById("sessionsPerMonth").value,
+
+        skills:
+        document.getElementById("skills").value,
+
+        bio:
+        document.getElementById("bio").value
+    };
+
+    localStorage.setItem(
+        "step4",
+        JSON.stringify(step4)
+    );
+
+    const finalData = {
+
+        ...JSON.parse(
+            localStorage.getItem("step1")
+        ),
+
+        ...JSON.parse(
+            localStorage.getItem("step2")
+        ),
+
+        ...JSON.parse(
+            localStorage.getItem("step3")
+        ),
+
+        ...step4
+    };
+
+    console.log(finalData);
+
+    try{
+
+        const response = await fetch(
+            "http://localhost:8093/api/mentor/register",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(finalData)
+            }
+        );
+
+        if(response.ok){
+
+            alert(
+                "Registration Submitted Successfully"
+            );
+
+            localStorage.clear();
+
+            window.location.href =
+            "index.html";
+
+        }else{
+
+            alert(
+                "Registration Failed"
+            );
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Cannot Connect To Backend Server"
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
