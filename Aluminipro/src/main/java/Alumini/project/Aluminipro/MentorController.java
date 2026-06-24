@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/mentor")
-@CrossOrigin(origins = "*")
 public class MentorController {
 
     @Autowired
