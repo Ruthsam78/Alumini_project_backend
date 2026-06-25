@@ -2,6 +2,8 @@ package Alumini.project.Aluminipro;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Document(collection = "mentorRegistrations")
 public class MentorRegistration {
@@ -17,9 +19,15 @@ public class MentorRegistration {
     private String experience;
     private String location;
 
+    @NotBlank
     private String fullName;
+
+    @NotBlank
     private String phone;
     private String alternatePhone;
+
+    @Email
+    @NotBlank
     private String primaryEmail;
     private String secondaryEmail;
     private String linkedin;
