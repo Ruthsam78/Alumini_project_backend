@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/mentor")
@@ -18,7 +19,7 @@ public class MentorController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(
-            @RequestBody @NonNull MentorRegistration mentor) {
+            @valid @RequestBody @NonNull MentorRegistration mentor) {
 
         MentorRegistration saved =
                 service.save(mentor);
