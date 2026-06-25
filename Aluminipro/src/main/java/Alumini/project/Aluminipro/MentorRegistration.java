@@ -19,15 +19,15 @@ public class MentorRegistration {
     private String experience;
     private String location;
 
-    @NotBlank
+    @NotBlank(message = "Full name cannot be empty")
     private String fullName;
 
-    @NotBlank
+    @NotBlank(message = "Phone number is required")
     private String phone;
     private String alternatePhone;
 
-    @Email
-    @NotBlank
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
     private String primaryEmail;
     private String secondaryEmail;
     private String linkedin;
